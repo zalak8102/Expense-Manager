@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SignIn Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: burlywood;
+            }
+            .container{
+                padding-top: 15%;
+                text-align: center;
+            }
+            p{
+                padding-left: 8%;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="nav justify-content-end">
+            <nav class="navbar navbar-light">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup/register/">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/signup/login/">Sign In</a>
+            </li>
+            </nav>
+        </ul>
+        <form method="POST" action="/signup/signin/">
+            {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                      </div>
+                    <div class="card text-white bg-info mb-3" style="max-width: 25rem;">
+                        <div class="card-header">Sign In</div>
+                            <div class="card-body">
+                        <p>Email    <input type="email" name="ueml" required/></p>
+                        <p>Password <input type="password" name="upswd" required/></p>
+                        <p><button type="submit" id="btn12" class="btn btn-warning">Sign In</button></p>
+                        <div class="card-footer">
+                            <p><a href="#" class="card-link">Forget Password</a></p>
+                            <p><a href="#" class="card-link">Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </body>
+</html>
