@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SignUp Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: burlywood;
+            }
+            .container{
+                padding-top: 10%;
+                text-align: center;
+            }
+            p{
+                padding-left: 8%;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="nav justify-content-end">
+            <nav class="navbar navbar-light">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/signup/register/">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup/login/">Sign In</a>
+            </li>
+            </nav>
+        </ul>
+      <form method="POST" action="/signup/user_register/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                      </div>
+                    <div class="card text-white bg-warning mb-3" style="max-width: 50rem;">
+                        <div class="card-header">Sign Up</div>
+                        <div class="card-body">
+                            <p>Name    <input type="text" name="usrne" required/></p> 
+                            <p>Email    <input type="email" name="uemail" required/></p>   
+                            <p>Password <input type="password" name="pwrd" required/></p>
+                            <p>Confirm Password <input type="password" name="cpwrd" required/></p>
+                            <p>Birth-Date <input type="date" name="bdate" required/></p>
+                            <p>Gender <input type="radio" name="gen" value="male"/>Male
+                            <input type="radio" name="gen" value="female"/>Female</p>
+                            <p><button type="submit" id="btn11" class="btn btn-info">Sign Up</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+   </body>
+</html>
