@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from signup.models import user_details
 from django.contrib import messages
+
 # Create your views here.
 
 def home(request):
@@ -46,7 +47,7 @@ def signin(request):
     if count==1:
         request.session['usremail']=usremail
         #messages.warning(request,"Your are successfully logged in!!")
-        return render(request,'home.html')
+        return redirect('/income/income/')
     elif count==0:
         messages.warning(request,"Incorrect password!!")
         return render(request,'signup/login.html')

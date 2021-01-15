@@ -1,45 +1,31 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>SignIn Page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <style>
-            body{
-                background-color: burlywood;
-            }
-            div{
-                padding-top: 10%;
-                padding-left: 30%;
-            }
-        </style>
-    </head>
-    <body>
-        <ul class="nav justify-content-end">
-            <nav class="navbar navbar-light">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup/register/">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup/login/">Sign In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup/logout/">Logout</a>
-            </li>
-            </nav>
-          </ul>
-        <div>
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>
-                    <div class="alert alert-warning alert-dismissable">{{message}}</div>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-          </div>
-    </body>
+{% extends 'base.html' %}
+<head>
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'signup/style.css' %}">
+</head>
+<body>
+    
+    {% block content %}
+      <div>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>
+            <div class="alert alert-warning alert-dismissable">{{message}}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+    <section style="height:500px;">
+        <a href="/signup/register/" class="btn btn-success" role="button" style="margin: 20% 0% 20% 40%;width: 120px;height: 60px;font-size: 24px;">SignUp</a>
+        <a href="/signup/login/" class="btn btn-success" role="button" style="margin: 20% 40% 20% 0%;width: 120px;height: 60px;font-size: 24px;">SignIn</a>
+        
+    </section>
+    {% endblock %}
+
+</body>
 </html>

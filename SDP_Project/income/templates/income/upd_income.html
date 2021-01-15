@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Income</title>
+</head>
+<body>
+    {% block content %}
+    <form method="POST" action="/income/upd_income/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+                        <div class="card-header">Add Income</div>
+                        <div class="card-body">
+                            <p>Name    <input type="text" name="iname" value="{{ inc.name }}" required/></p> 
+                            <p>Description    <input type="text" name="ides" value="{{ inc.description }}" /></p>   
+                            <p>Amount <input type="number" name="iamt" value="{{ inc.amount }}" required/></p>
+                            <p>Earning-Date <input type="date" name="idate" value="{{ inc.date }}" required/></p>
+                            <p> <input type="checkbox" name="ireg" /> Is this regular Income?</p>
+                            <input type="hidden" name="id" value="{{ inc.incomeID }}">
+                            <p><button type="submit" id="updincome" class="btn btn-success">UPDATE</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>
+</html>
