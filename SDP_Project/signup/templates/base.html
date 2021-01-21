@@ -8,80 +8,71 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  {% load static %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'signup/style.css' %}">
 </head>
 <body>
 
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/signup/register/">Sign Up</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/signup/login/">Sign In</a>
-    </li>
-  </ul>
   
-</nav>
-
-
-  <!--div>
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>
-            <div class="alert alert-warning alert-dismissable">{{message}}</div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
         </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-  </div-->
-  <div class="container-fluid"><br>
-    {% block content %}
-    {% endblock %}
-  </div>
-  
+        <li class="nav-item">
+            <a class="nav-link" href="/signup/register/">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/signup/login/">Sign In</a>
+        </li>
+      </ul>
+    </div>
+    <div class="social text-gray" style=" padding: 1.4rem 0 1.4rem 70%;">
+      <a href="#"><i class="fab fa-facebook" style="color: whitesmoke; padding: 0 0.5rem;"></i></a>
+      <a href="#"><i class="fab fa-instagram" style="color: whitesmoke; padding: 0 0.5rem;"></i></a>
+      <a href="#"><i class="fab fa-twitter" style="color: whitesmoke; padding: 0 0.5rem;"></i></a>
+      <a href="#"><i class="fab fa-youtube" style="color: whitesmoke; padding: 0 0.5rem;"></i></a>
+    </div>
+  </nav>
+    <div class="container-fluid"><br>
+      {% block content %}
+      {% endblock %}
+    </div>
+    
 
-		<!----------footer------------------->
+      <!----------footer------------------->
 
-		<footer class="footer">
-			<div class="container">
-				<div class="about-us">
-					<h2>About Us</h2>
-					<p style="color:#686666da;">Here to help you to manage your income and expenses.</p>
-				</div>
-				<div class="customer-support">
-					<h2>Customer Support</h2>
-					<a href="/signup/register/">Open an Account</a><br>
-					<a href="/signup/login/">Login to your Account</a><br>
-					<a href="#">Check your savings.</a>
-				</div>
-				<div class="contact-us">
-					<h2>Contact Us</h2>
-					<p style="color:#686666da;"><i class="fas fa-envelope"></i> expenses247@gmail.com</p>
-					<p style="color:#686666da;"><i class="fas fa-phone-square-alt"></i> 1890 111 2222</p>
-				</div>
-				<div class="follow">
-					<h2>Follow Us</h2>
-					<p style="color:#686666da;">Let us be Social</p>
-					<div>
-						<i class="fab fa-facebook"></i>
-						<i class="fab fa-instagram"></i>
-						<i class="fab fa-twitter"></i>
-            <i class="fab fa-youtube"></i>
-            
-					</div>
-				</div>
-			</div>
-		</footer>
-
-  
+      <footer class="footer">
+        <div class="container">
+          <div class="about-us">
+            <h2>About Us</h2>
+            <p style="color:#686666da;">Here to help you to manage your income and expenses.</p>
+          </div>
+          <div class="customer-support">
+            <h2>Customer Support</h2>
+            <a href="/signup/register/">Open an Account</a><br>
+            <a href="/signup/login/">Login to your Account</a><br>
+            <a href="#">Check your savings.</a>
+          </div>
+          <div class="contact-us">
+            <h2>Contact Us</h2>
+            <p style="color:#686666da;"><i class="fas fa-envelope"></i> expenses247@gmail.com</p>
+            <p style="color:#686666da;"><i class="fas fa-phone-square"></i> 1890 111 2222</p>
+          </div>
+          <div class="follow">
+            <h2>Follow Us</h2>
+            <p style="color:#686666da;">Let us be Social</p>
+            <div>
+              <i class="fab fa-facebook"></i>
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-twitter"></i>
+              <i class="fab fa-youtube"></i>            
+            </div>
+          </div>
+        </div>
+      </footer>  
 </body>
 </html>
 

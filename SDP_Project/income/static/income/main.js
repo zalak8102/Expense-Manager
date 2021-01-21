@@ -1,59 +1,4 @@
-
-/*function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-function createFolder(csrftoken) {
-    var foldername = prompt("Please enter foldername:");
-    form = document.createElement('form');
-    form.setAttribute('method','POST');
-    form.setAttribute('action','/user/createfolder/');
-    input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'csrfmiddlewaretoken';
-    input.value = csrftoken;
-    form.appendChild(input);
-    file = document.createElement('input');
-    file.setAttribute('name','newfolder');
-    file.setAttribute('type','hidden');
-    file.setAttribute('value',foldername);
-    form.appendChild(file);
-    document.body.appendChild(form);
-    form.submit();l̥
-}
-
-function download(filename, csrftoken) {
-    form = document.createElement('form');
-    form.setAttribute('method','POST');
-    form.setAttribute('action','/user/download/');
-    input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'csrfmiddlewaretoken';
-    input.value = csrftoken;
-    form.appendChild(input);
-    file = document.createElement('input');
-    file.setAttribute('name','filename');
-    file.setAttribute('type','hidden');
-    file.setAttribute('value',filename);
-    form.appendChild(file);
-    document.body.appendChild(form);
-    form.submit();
-}
-*/
-function upd(id, csrftoken) {
+function updInc(id, csrftoken) {
     form = document.createElement('form');
     form.setAttribute('method','POST');
     form.setAttribute('action','/income/updateinc/');
@@ -72,7 +17,7 @@ function upd(id, csrftoken) {
 }
 
 
-function del(id, csrftoken) {
+function delInc(id, csrftoken) {
     form = document.createElement('form');
     form.setAttribute('method','POST');
     form.setAttribute('action','/income/del_income/');
@@ -88,4 +33,56 @@ function del(id, csrftoken) {
     form.appendChild(income);
     document.body.appendChild(form);
     form.submit();
+}
+
+function updPrf(email, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/signup/updateprf/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    profile = document.createElement('input');
+    profile.setAttribute('name','email');
+    profile.setAttribute('type','hidden');
+    profile.setAttribute('value',email);
+    form.appendChild(profile);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function req(){
+    if( document.getElementById('opwrd').required){
+        document.getElementById('opwrd').required=false;
+        document.getElementById('pwrd').required=false;
+        document.getElementById('cpwrd').required=false;
+    }
+    else{
+        document.getElementById('opwrd').required=true;
+        document.getElementById('pwrd').required=true;
+        document.getElementById('cpwrd').required=true;
+    
+    }
+}
+
+function passcheck(password,csrftoken){
+    if(document.getElementById('opwrd').value!=password){
+        document.getElementById('opwrd').value=null;
+        window.alert("Enter correct password.");
+    }
+}
+
+function oldpasscheck(password,csrftoken){
+    if(document.getElementById('pwrd').value==password){
+        document.getElementById('pwrd').value=null;
+        window.alert("New password can not be same as a old password.");
+    }
+}
+
+function newpasscheck(csrftoken){
+    if(document.getElementById('pwrd').value!=document.getElementById('cpwrd').value){
+        window.alert("Make sure your password and confirm password are same.");
+    }
 }
