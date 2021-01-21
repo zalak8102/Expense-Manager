@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html>
+    <head>
+        <title>Profile Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: burlywood;
+            }
+            .container{
+                padding-top: 15%;
+                text-align: center;
+            }
+            p{
+                padding-left: 8%;
+            }
+        </style>
+    </head>
+    <body>
+    {% block content %}
+    <div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+           
+                <div class="card text-white mb-3" style="background-color: rgb(92, 20, 92);">
+                    <div class="card-header" style="color: rgb(26, 25, 24);background-color: tan;"><h2><i class="fas fa-user-circle" style="padding: 0.7rem;"></i>{{ usr.username }}</h2></div>
+                            <div class="card-body">
+                                <p class="card-text"><i class="fas fa-envelope" style="padding: 0.2rem;"></i>   {{ usr.email }}</p>
+                                <p class="card-text"><i class="fas fa-birthday-cake" style="padding: 0.2rem;"></i> {{ usr.bdate }}</p>
+                                <p class="card-text"><i class="fas fa-user" style="padding: 0.2rem;"></i> {{ usr.gender }}</p>
+                                <div class="card-footer" style="display: inline-flex;">
+                                    <button class="btn" style="background-color: tan;" onclick='updPrf("{{ usr.email }}", "{{ csrf_token }}")'><h4><i class="fas fa-user-edit" style="padding: 0.4rem;"></i>UPDATE</h4></button>
+                                </div>
+                            </div>
+                    </div>
+            
+                </div>
+            </div>
+    </div>
+    <br><br>
+    {% endblock %}
+    </body>
+</html>

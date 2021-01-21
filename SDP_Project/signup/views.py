@@ -63,3 +63,25 @@ def logout(request):
     else:
         return render(request,'home.html')
     
+def profile(request):
+    usr=user_details.objects.get(email=request.session['usremail'])
+    return render(request,'signup/profile.html',context={"usr": usr})
+
+def updateprf(request):
+    email=request.POST['email']
+    usr=user_details.objects.get(email=email)
+    g=1
+    if usr.gender == "male" :
+        g=0
+    return render(request,'signup/upd_profile.html',context={"usr": usr,"g":g})
+
+def upd_profile(request):
+    email=request.session['usremail']
+    usr=user_details.objects.get(email=email) 
+    #pswd=request.POST['pwrd']
+    #cpswd=request.POST['cpwrd']
+    usr.username=request.POST['usrne']
+    usr.bdate=request.POST['bdate']
+    usr.gender=request.POST['gen']
+    usr.save()
+    return redirect('/signup/profile')
