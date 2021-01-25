@@ -86,3 +86,5 @@ function newpasscheck(csrftoken){
         window.alert("Make sure your password and confirm password are same.");
     }
 }
+
+$(".progress-bar").loading();

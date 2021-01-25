@@ -8,9 +8,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="jQuery-plugin-progressbar.js"></script>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'income/style1.css' %}">
   <script src="{% static 'income/main.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'income/loading-bar.css' %}"/>
+  <script type="text/javascript" src="{% static 'income/loading-bar.js' %}"></script>
   
 </head>
 <body>
@@ -22,13 +26,13 @@
           <a class="nav-link" href="/income/">Incomes</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="#">Expenses</a>
+          <a class="nav-link" href="/expense/">Expenses</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="#">Goals</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="#">Report</a>
+          <a class="nav-link" href="/expense/report/">Report</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="/signup/profile/">Profile</a>

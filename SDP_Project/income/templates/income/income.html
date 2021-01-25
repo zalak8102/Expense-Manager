@@ -12,7 +12,7 @@
     <div>
         <div class="card-deck" >
             {% for inc in inc %}
-                <div class="card" style="background-color: rgb(158, 185, 221);">
+                <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
                     <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ inc.name }}
                         <div class="card-footer" style="display: inline-flex;justify-self: right;">
                             <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.4rem;size: 8px;"></i></button>
