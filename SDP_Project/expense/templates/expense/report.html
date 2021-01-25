@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Expense</title>
+</head>
+<body>
+    {% block content %}
+    <style>
+            .ldBar-label {
+                color: rgb(43, 94, 128);
+                font-family: 'varela round';
+                font-size: 1.5em;
+                font-weight: 900;
+                
+            }
+
+            .ldBar path.mainline {
+                stroke-width: 10;
+                stroke: rgb(73, 11, 97);
+                stroke-linecap: round;
+            }
+            .ldBar path.baseline {
+                stroke-width: 14;
+                stroke: #17191a;
+                stroke-linecap: round;
+                filter:url(#custom-shadow);
+            }
+
+            #gsearch{
+                padding: .5rem.9rem;
+                margin: 1rem 1rem;
+                margin-right: 0;
+                padding-right: 0;
+                border-color: var(--midnight);
+                background: transparent;
+                color: black;
+                font-family: var(--Josefin);
+                font-size: 1rem;
+                width:80%;
+            }
+            form span{
+                background: var(--sky);
+                padding: .5rem.7rem;
+                cursor: pointer;
+            }
+    </style>
+    <div class="container">
+        <div class="row" style="padding: 0.5rem;">
+            <div class="col-3"></div>
+           <div class="col-3">
+            <div class="ldBar label-center" data-preset="circle" data-value="90"></div>
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Income : 50000</p>
+          </div>
+          <div class="col-3">
+            <div class="ldBar label-center" data-preset="circle" data-value="50"></div> 
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : 40000</p>
+          </div>
+          <div class="col-3">
+            <div class="ldBar label-center" data-preset="circle" data-value="60"></div> 
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Saving : 10000</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-2">
+            <section style="height: 50px; margin: 1rem 1rem;">
+                <a href="/expense/addexp/" class="btn btn-info" role="button"><i class="fas fa-plus" style="padding: 0.5rem .7rem;size: 8px;"></i></a>
+            </section>
+          </div>
+          <div class="col-10">
+            <form action="">
+                <input type="search" id="gsearch" name="gsearch" placeholder="Search expense by name" onkeyup="searchFun2()">
+                <span><i class="fas fa-chevron-right"></i></span>
+            </form>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <h3 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Filters <i class="fas fa-filter"></i></h3>
+                <hr>
+                <div class="d-flex flex-column">
+                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Date <i class="fas fa-sort"></i></h5></div>
+                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Amount <i class="fas fa-sort-amount-down"></i></h5></div>
+                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Catagory <i class="fas fa-sort-alpha-down"></i></h5></div>
+                </div>
+            </div>
+             <div class="col-8">
+                 <!--
+                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
+                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
+                </div>
+                
+
+                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
+                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
+                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
+                </div-->
+                  
+            </div>
+        </div>
+    </div>
+      
+      <br><br>
+    {% endblock %}
+</body>
+</html>
