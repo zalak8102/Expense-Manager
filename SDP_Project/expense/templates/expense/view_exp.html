@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>View Expense</title>
+</head>
+<body>
+    {% block content %}
+    <!--<section style="height: 50px;">
+        <a href="/exp//" class="btn btn-info" role="button"><i class="fas fa-plus" style="padding: 0.4rem;size: 8px;"></i></a>
+    </section>-->
+    <div>
+        <div class="row justify-content-center">
+                <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
+                    <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ exps.expName }}
+                        <div class="card-footer" style="display: inline-flex;justify-self: right;">
+                           <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updExp("{{ exps.expId }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.4rem;size: 8px;"></i></button>
+                            <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delExp("{{ exps.expId }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.4rem;size: 8px;"></i></button></div>
+                        </div></h4>
+                            <div class="card-body">
+                                <p class="card-text"><i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i>Amount : {{ exps.amount }}</p>
+                                <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Category : {{ exps.category }}</p>
+                                <p class="card-text"><i class="fas fa-calendar-day" style="padding: 0.4rem;"></i>Date : {{ exps.date }}</p>
+                                <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Description : {{ exps.comments }}</p>
+                            </div>
+                    </div>
+                 </div> 
+            </div>    
+    </div>
+    <br><br>
+    {% endblock %}
+</body>
+</html>

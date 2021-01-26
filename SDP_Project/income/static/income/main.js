@@ -35,6 +35,60 @@ function delInc(id, csrftoken) {
     form.submit();
 }
 
+function viewExp(id, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/exp/viewExp/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    expse = document.createElement('input');
+    expse.setAttribute('name','id');
+    expse.setAttribute('type','hidden');
+    expse.setAttribute('value',id);
+    form.appendChild(expse);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function updExp(id, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/exp/updateExp/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    expse = document.createElement('input');
+    expse.setAttribute('name','id');
+    expse.setAttribute('type','hidden');
+    expse.setAttribute('value',id);
+    form.appendChild(expse);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function delExp(id, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/exp/del_exp/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    expse = document.createElement('input');
+    expse.setAttribute('name','id');
+    expse.setAttribute('type','hidden');
+    expse.setAttribute('value',id);
+    form.appendChild(expse);
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function updPrf(email, csrftoken) {
     form = document.createElement('form');
     form.setAttribute('method','POST');
