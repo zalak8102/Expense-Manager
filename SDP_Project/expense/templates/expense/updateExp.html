@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Expense Update</title>
+</head>
+<body>
+    {% block content %}
+    <form method="POST" action="/exp/upd_exp/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+                        <div class="card-header" style="background-color: cadetblue;">Update Expense</div>
+                        <div class="card-body">
+                            <p>Name    <input type="text" name="expnm" value="{{ exps.expName }}" required/></p> 
+                            <p>Category
+                                <select name="catg" id="catg">
+                                    <option value="food">Food</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="household">HouseHold</option>
+                                    <option value="medical">Medical</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="others">Others</option>
+                                  </select>
+                            </p> 
+                            <p>Comments    <input type="text" name="expcmt" value="{{ exps.comments }}" /></p>   
+                            <p>Amount <input type="number" name="expamnt" value="{{ exps.amount }}" required/></p>
+                            <p>Expense-Date <input type="date" name="expdt" value="{{ exps.date }}" required/></p>
+                            <input type="hidden" name="id" value="{{ exps.expId }}">
+                            <p><button type="submit" id="updexpense" class="btn btn-success">UPDATE</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>
+</html>

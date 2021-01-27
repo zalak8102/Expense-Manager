@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Expense</title>
+</head>
+<body>
+    {% block content %}
+    <form method="POST" action="/exp/add_expense/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+                        <div class="card-header" style="background-color: cadetblue;">Add Expense</div>
+                        <div class="card-body">
+                            <p>Name    <input type="text" name="exname" required/></p>  
+                            <p>Category
+                                <select name="catg" id="catg">
+                                    <option value="food">Food</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="household">HouseHold</option>
+                                    <option value="medical">Medical</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="others">Others</option>
+                                  </select>
+                            </p> 
+                            <p>Amount <input type="number" name="examt" required/></p>
+                            <p>Expense-Date <input type="date" name="exdate" required/></p>
+                            <p>Comments <input type="text" name="excomt" required/></p>
+                            <p><button type="submit" id="addexp" class="btn btn-success">ADD</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>
+</html>
