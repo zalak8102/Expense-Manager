@@ -53,7 +53,7 @@
             <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Income : 50000</p>
           </div>
           <div class="col-3">
-            <div class="ldBar label-center" data-preset="circle" data-value="50"></div> 
+            <div class="ldBar label-center" data-preset="circle" data-value="{{rexp}}"></div> 
             <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : 40000</p>
           </div>
           <div class="col-3">
@@ -88,25 +88,25 @@
                 </div>
             </div>
              <div class="col-8">
-                 <!--
                 <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
-                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Total Expenses</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{total_exp}}</div>
                 </div>
-                
-
-                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
-                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Average</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{average}}</div>
                 </div>
-                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
-                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
-                </div-->
-                  
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Minimum Expense</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{min_exp}}</div>
+                </div>
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Maximun Expense</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{max_exp}}</div>
+                </div>
             </div>
         </div>
     </div>
