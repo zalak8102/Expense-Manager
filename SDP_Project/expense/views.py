@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from expense.models import expense
+from income.models import income_details
 from django.contrib import messages
 
 # Create your views here.
@@ -8,7 +9,26 @@ def exp(request):
     return render(request,'expense/expense.html',context={"exps": exps})
 
 def report(request):
-    return render(request,'expense/report.html')
+    exps=expense.objects.all().filter(user_id=request.session['usremail'])
+    total_exp=0
+    total_inc=0
+    count=0
+    average=0
+    rexp=0
+    amt=[]
+    for ep in exps:
+        total_exp+=ep.amount
+        amt.append(ep.amount)
+        count=count+1
+    average=total_exp/count
+    min_exp=min(amt)
+    max_exp=max(amt)
+    incs=income_details.objects.all().filter(user_id=request.session['usremail'])
+    for ic in incs:
+        total_inc+=ic.amount
+    rexp=(total_exp/total_inc)*100
+    eps={"exps":exps,"total_exp":total_exp,"average":average,"min_exp":min_exp,"max_exp":max_exp,"rexp":rexp}
+    return render(request,'expense/report.html',eps)
 
 def addexp(request):
     return render(request,'expense/add_expense.html')
@@ -50,4 +70,6 @@ def del_exp(request):
     id=request.POST['id']
     expense.objects.get(expId=id).delete()
     return redirect('/exp/')
+
+
 
