@@ -12,22 +12,40 @@
     <div>
         <div class="card-deck" >
             {% for inc in inc %}
-                <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
-                    <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ inc.name }}
-                        <div class="card-footer" style="display: inline-flex;justify-self: right;">
-                            <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.4rem;size: 8px;"></i></button>
-                            <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.4rem;size: 8px;"></i></button></div>
-                        </div></h4>
-                            <div class="card-body">
-                                <p class="card-text"><i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i>Amount : {{ inc.amount }}</p>
-                                <p class="card-text"><i class="fas fa-calendar-day" style="padding: 0.4rem;"></i>Date : {{ inc.date }}</p>
-                                <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Description : {{ inc.description }}</p>
-                                <!--div class="card-footer" style="display: inline-flex;">
-                                    <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'>Update</button>
-                                    <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delInc("{{ inc.incomeID }}", "{{ csrf_token }}")'>Delete</button>
-                                </div-->
-                            </div>
-                    </div>
+                
+                        {% if inc.regular  %}
+                        <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
+                            <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ inc.name }} 
+                            <i class="fas fa-check-circle" style="color: greenyellow;"></i>
+                            <div class="card-footer" style="display: inline-flex;justify-self: right;">
+                                <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 8px;"></i></button>
+                                <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 8px;"></i></button></div>
+                            </div></h4>
+                                <div class="card-body">
+                                    <p class="card-text"><i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i>Amount : {{ inc.amount }}</p>
+                                    <p class="card-text"><i class="fas fa-calendar-day" style="padding: 0.4rem;"></i>Date : {{ inc.date }}</p>
+                                    <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Description : {{ inc.description }}</p>
+                                    
+                                </div>
+                        </div>
+                        {% else %}
+                            {% if inc.date.month == currentMonth %}
+                            <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
+                                <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ inc.name }} 
+                                    <div class="card-footer" style="display: inline-flex;justify-self: right;">
+                                        <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 8px;"></i></button>
+                                        <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 8px;"></i></button></div>
+                                    </div></h4>
+                                        <div class="card-body">
+                                            <p class="card-text"><i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i>Amount : {{ inc.amount }}</p>
+                                            <p class="card-text"><i class="fas fa-calendar-day" style="padding: 0.4rem;"></i>Date : {{ inc.date }}</p>
+                                            <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Description : {{ inc.description }}</p>
+                                            
+                                        </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        
             {% endfor %}  
         </div>     
     </div>

@@ -28,8 +28,12 @@
                             <p>Name    <input type="text" name="iname" value="{{ inc.name }}" required/></p> 
                             <p>Description    <input type="text" name="ides" value="{{ inc.description }}" /></p>   
                             <p>Amount <input type="number" name="iamt" value="{{ inc.amount }}" required/></p>
-                            <p>Earning-Date <input type="date" name="idate" value="{{ inc.date }}" required/></p>
-                            <p> <input type="checkbox" name="ireg" /> Is this regular Income?</p>
+                            <p>Earning-Date <input type="date" name="idate" value="{{ inc.date | date:'Y-m-d' }}" required/></p>
+                            {% if inc.regular %}
+                                <p> <input type="checkbox" name="ireg" checked/> Is this regular Income?</p>
+                            {% else %}
+                                <p> <input type="checkbox" name="ireg"/> Is this regular Income?</p>
+                            {% endif %}
                             <input type="hidden" name="id" value="{{ inc.incomeID }}">
                             <p><button type="submit" id="updincome" class="btn btn-success">UPDATE</button></p>
                         </div>
