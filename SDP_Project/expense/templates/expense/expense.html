@@ -43,43 +43,68 @@
 
         <hr>
         <div class="row">
-            <!--div class="col-4">
+            <div class="col-2">
                 <h3 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Filters <i class="fas fa-filter"></i></h3>
                 <hr>
                 <div class="d-flex flex-column">
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Date <i class="fas fa-sort"></i></h5></div>
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Amount <i class="fas fa-sort-amount-down"></i></h5></div>
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Catagory <i class="fas fa-sort-alpha-down"></i></h5></div>
+                    <form method="POST" action="/exp/sortByDate/">
+                        {% csrf_token %}
+                        <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Date <button type="submit" > <i class="fas fa-sort"></i></button></h5></div>
+                    </form>
+                    <form method="POST" action="/exp/sortByAmt/">
+                        {% csrf_token %}
+                        <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Amount <button type="submit" > <i class="fas fa-sort-amount-down"></i></button></h5></div>
+                    </form>
+                    <form method="POST" action="/exp/sortByCate/">
+                        {% csrf_token %}
+                        <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Catagory <button type="submit" ><i class="fas fa-sort-alpha-down"></i></button></h5></div>
+                    </form>
                 </div>
-            </div-->
-             <div class="col-12">
-                 {% for exps in exps %}
-                 <!--for loop to display all the expenses.-->
-                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">{{exps.expName}}</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{exps.category}}</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">{{exps.amount}}</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color:white;">{{exps.date}}</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">{{exps.comment}}</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;"><button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updExp("{{ exps.expId }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.4rem;size: 8px;"></i></button></div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;"><button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delExp("{{ exps.expId }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.4rem;size: 8px;"></i></button></div>
-                    <!--<div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);">
-                        <button class="btn" onclick='viewExp("{{ exps.expId }}", "{{ csrf_token }}")'></button><i class="fas fa-eye"></i></div>-->
-                </div>
-                <!--end for loop-->
-
-                <!--<div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
-                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
-                </div>
-                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Pizza</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">50$</div>
-                    <div class="p-2 ml-auto" style="width: 20%;background-color: rgb(194, 144, 181);"><i class="fas fa-eye"></i></div>
-                </div>-->
-                {% endfor %}    
             </div>
+             <div class="col-10">
+                {% if not safe %} 
+                <p style="color: red;">Your Expenses exceed Income</p>
+                {% endif%} 
+                 {% for exp in exps %}
+                 <!--for loop to display all the expenses.-->
+                
+                 {% if exp.date.month == currentMonth %}
+                
+                <div class="d-flex mb-3 target" style="background-color: rgb(194, 144, 181);">
+                    <div class="p-2 target" style="width: 30%;background-color: rgb(88, 18, 67);color:white;">{{exp.expName}}</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(100, 21, 75);color: white;">{{exp.category}}</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(117, 27, 90);color:white;">{{exp.amount}}</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(139, 41, 108);color:white;">{{exp.date}}</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(148, 51, 119);color:white;">{{exp.comments}}</div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;"><button class="btn" style="margin: 0.2rem;background-color: burlywood;" onclick='updExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
+                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;"><button class="btn" style="margin: 0.2rem;background-color:burlywood;" onclick='delExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
+                </div>
+                
+                {% endif %}
+                <!--end for loop-->
+                {% endfor %}    
+                <button type="button" class="btn" style="background-color: tan;" data-toggle="collapse" data-target="#demo1" onclick="req()">Show All Expenses</button>
+                    <br><br>
+                    <div id="demo1" class="collapse">
+                        {% for exp in exps %}
+                        <!--for loop to display all the expenses.-->
+                        <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
+                           <div class="p-2" style="width: 30%;background-color: rgb(8, 66, 8);color:white;">{{exp.expName}}</div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(16, 105, 13);color: white;">{{exp.category}}</div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(30, 119, 22);color:white;">{{exp.amount}}</div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(34, 145, 24);color:white;">{{exp.date}}</div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(63, 175, 29);color:white;">{{exp.comment}}</div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(53, 201, 34);color:white;"><button class="btn" style="margin: 0.2rem;background-color: burlywood;" onclick='updExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(94, 209, 41);color:white;"><button class="btn" style="margin: 0.2rem;background-color:burlywood;" onclick='delExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
+                       </div>
+                       <!--end for loop-->
+                {% endfor %}    
+                                     
+                                    
+                    </div>
+            
+            </div>
+                                
         </div>
     </div>
       

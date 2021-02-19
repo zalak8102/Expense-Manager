@@ -1,15 +1,14 @@
 from django.shortcuts import render,redirect
 from income.models import income_details
 from django.contrib import messages
-
+from datetime import datetime
 
 # Create your views here.
 
 def income(request):
     inc=income_details.objects.all().filter(user_id=request.session['usremail'])
-    #for p in income_details.objects.raw('SELECT * FROM income_income_details'):
-        #inc.append(p)
-    return render(request,'income/income.html',context={"inc": inc})
+    currentMonth = datetime.now().month
+    return render(request,'income/income.html',context={"inc": inc,"currentMonth":currentMonth})
 
 
 def addinc(request):

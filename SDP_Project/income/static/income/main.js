@@ -141,4 +141,23 @@ function newpasscheck(csrftoken){
     }
 }
 
-$(".progress-bar").loading();
+function searchFun2() {
+    var input = document.getElementById("gsearch");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('d-flex mb-3 target');
+
+    for (i = 0; i < nodes.length; i++) {
+        var n = nodes[i].children[0];
+        
+        if (n.innerText.toLowerCase().includes(filter)) {
+            for (j = 0; j < nodes[i].children.length; j++) {
+                 nodes[i].children[j].style.display = "block";
+            }
+        } else {
+            for (j = 0; j < nodes[i].children.length; j++) {
+                nodes[i].children[j].style.display = "none";
+            }
+        }
+    }
+}
+//$(".progress-bar").loading();

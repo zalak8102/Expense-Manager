@@ -2,7 +2,7 @@
 {% extends 'base1.html' %}
 <html lang="en">
 <head>
-    <title>Expense</title>
+    <title>Report</title>
 </head>
 <body>
     {% block content %}
@@ -44,17 +44,29 @@
                 padding: .5rem.7rem;
                 cursor: pointer;
             }
+           
     </style>
     <div class="container">
         <div class="row" style="padding: 0.5rem;">
-            <div class="col-3"></div>
-           <div class="col-3">
+            <!--div class="col-3"></div-->
+          <!--div class="col-3">
             <div class="ldBar label-center" data-preset="circle" data-value="90"></div>
             <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Income : 50000</p>
+          </div-->
+          <div class="col-6">
+            <div class="d-flex mb-3" style="background-color: rgb(101, 21, 121);"></div>
+            <div class="p-2" style="width: 40%;background-color: rgb(83, 11, 105);color:white;">Total Incomes</div>
+            <div class="p-2" style="width: 40%;background-color: rgb(131, 95, 155);color: white;">{{total_inc}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
           </div>
           <div class="col-3">
             <div class="ldBar label-center" data-preset="circle" data-value="{{rexp}}"></div> 
-            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : 40000</p>
+            {% if safe %} 
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{total_exp}}</p>
+       
+            {% else %} 
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{total_exp}}</p>
+            <p style="color: red;">Your Expenses exceed Income</p>
+            {% endif%} 
           </div>
           <div class="col-3">
             <div class="ldBar label-center" data-preset="circle" data-value="60"></div> 
@@ -62,7 +74,7 @@
           </div>
         </div>
         <hr>
-        <div class="row">
+        <!--div class="row">
           <div class="col-2">
             <section style="height: 50px; margin: 1rem 1rem;">
                 <a href="/expense/addexp/" class="btn btn-info" role="button"><i class="fas fa-plus" style="padding: 0.5rem .7rem;size: 8px;"></i></a>
@@ -74,11 +86,11 @@
                 <span><i class="fas fa-chevron-right"></i></span>
             </form>
           </div>
-        </div>
+        </div-->
 
-        <hr>
+    
         <div class="row">
-            <div class="col-4">
+            <!--div class="col-4">
                 <h3 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Filters <i class="fas fa-filter"></i></h3>
                 <hr>
                 <div class="d-flex flex-column">
@@ -86,27 +98,33 @@
                     <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Amount <i class="fas fa-sort-amount-down"></i></h5></div>
                     <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Catagory <i class="fas fa-sort-alpha-down"></i></h5></div>
                 </div>
+            </div-->
+             <div class="col-4">
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Total Expenses</div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{total_exp}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
+                </div>
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Average Expense</div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{average}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
+                </div>
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Minimum Expense</div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{min_exp}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
+                </div>
+                <div>
+                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Maximun Expense</div>
+                    <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{max_exp}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
+                </div>
             </div>
-             <div class="col-8">
-                <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);">
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Total Expenses</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{total_exp}}</div>
-                </div>
-                <div>
-                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Average</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{average}}</div>
-                </div>
-                <div>
-                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Minimum Expense</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{min_exp}}</div>
-                </div>
-                <div>
-                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(168, 66, 138);color:white;">Maximun Expense</div>
-                    <div class="p-2" style="width: 30%;background-color: rgb(173, 88, 146);color: white;">{{max_exp}}</div>
-                </div>
+            <div class="col-8">
+              
+              
+              <img src="/media/chart.png" />
             </div>
         </div>
     </div>

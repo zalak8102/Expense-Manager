@@ -2,13 +2,17 @@ from django.shortcuts import render,redirect
 from expense.models import expense
 from income.models import income_details
 from django.contrib import messages
+import math
+import operator
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
+import numpy as np
+from datetime import datetime
+
 
 # Create your views here.
-def exp(request):
-    exps=expense.objects.all().filter(user_id=request.session['usremail'])
-    return render(request,'expense/expense.html',context={"exps": exps})
-
-def report(request):
+def calculate(request):
     exps=expense.objects.all().filter(user_id=request.session['usremail'])
     total_exp=0
     total_inc=0
@@ -27,7 +31,63 @@ def report(request):
     for ic in incs:
         total_inc+=ic.amount
     rexp=(total_exp/total_inc)*100
-    eps={"exps":exps,"total_exp":total_exp,"average":average,"min_exp":min_exp,"max_exp":max_exp,"rexp":rexp}
+    rexp = math.ceil(rexp)
+    if total_exp > total_inc :
+        safe = False
+    else:
+        safe = True
+    currentMonth = datetime.now().month
+    eps={"currentMonth":currentMonth,"safe":safe,"exps":exps,"total_exp":total_exp,"total_inc":total_inc,"average":average,"min_exp":min_exp,"max_exp":max_exp,"rexp":rexp}
+    return eps
+
+def sortByDate(request):
+    exps=expense.objects.all().filter(user_id=request.session['usremail']).order_by('date')
+    eps=calculate(request)
+    return render(request,'expense/expense.html',context={"currentMonth":eps["currentMonth"],"exps": exps,"safe":eps["safe"]})
+
+def sortByAmt(request):
+    exps=expense.objects.all().filter(user_id=request.session['usremail']).order_by('amount')
+    eps=calculate(request)
+    return render(request,'expense/expense.html',context={"currentMonth":eps["currentMonth"],"exps": exps,"safe":eps["safe"]})
+
+def sortByCate(request):
+    exps=expense.objects.all().filter(user_id=request.session['usremail']).order_by('category')
+    eps=calculate(request)
+    return render(request,'expense/expense.html',context={"currentMonth":eps["currentMonth"],"exps": exps,"safe":eps["safe"]})
+
+def exp(request):
+    exps=expense.objects.all().filter(user_id=request.session['usremail'])
+    eps=calculate(request)
+    return render(request,'expense/expense.html',context={"exps": exps,"safe":eps["safe"],"currentMonth":eps["currentMonth"]})
+
+def report(request):
+    exps=expense.objects.all().filter(user_id=request.session['usremail'])
+    #labels = 'Food', 'Entertainment','HouseHold','Medical','Shopping','Travel','Others'
+    labels = 'F','E','H','M','S','T','O'
+    catamt = {
+        "food": 0,
+        "entertainment": 0,
+        "household": 0,
+        "medical": 0,
+        "shopping":0,
+        "travel":0,
+        "others":0
+    }
+    for e in exps:
+        catamt[e.category] += e.amount
+    sizes = []
+    for key in catamt:
+        sizes.append(catamt[key])
+    objects = labels
+    y_pos = np.arange(len(objects))
+    qty = sizes
+    plt.bar(y_pos, qty, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Amount')
+    plt.title('Category')
+    plt.savefig('media/chart.png',dpi=100)
+    
+    eps=calculate(request)
     return render(request,'expense/report.html',eps)
 
 def addexp(request):
@@ -52,16 +112,19 @@ def viewExp(request):
 def updateExp(request):
     id=request.POST['id']
     exps=expense.objects.get(expId=id)
-    return render(request,'expense/updateExp.html',context={"exps": exps})
+    label=['food', 'entertainment','houseHold','medical','shopping','travel','others']
+    label.remove(exps.category)
+    return render(request,'expense/updateExp.html',context={"exps": exps,"label":label})
 
 
 def upd_exp(request):
     id=request.POST['id']
     exps=expense.objects.get(expId=id)
-    exps.name=request.POST['expnm']
-    exps.description=request.POST['expcmt']
+    exps.expName=request.POST['expnm']
+    exps.comments=request.POST['expcmt']
     exps.amount=request.POST['expamnt']
     exps.user_id=request.session['usremail']
+    exps.category=request.POST['catg']
     exps.date=request.POST['expdt']
     exps.save()
     return redirect('/exp/')
