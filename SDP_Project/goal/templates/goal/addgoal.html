@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Goals</title>
+</head>
+<body>
+    {% block content %}
+    <form method="POST" action="/goals/add_goal/">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>
+                                <div class="alert alert-warning alert-dismissable">{{message}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
+                        <div class="card-header" style="background-color: cadetblue;">Add Goals</div>
+                        <div class="card-body">
+                            <p>Name    <input type="text" name="glname" required/></p>  
+                            <p>Amount <input type="number" name="glamt" required/></p>
+                            <p>Goal-Date <input type="date" name="gldate" required/></p>
+                            <p>Contribution(per month) <input type="number" name="glcont"/></p>
+                            <p><button type="submit" id="addgoal" class="btn btn-success">ADD</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>
+</html>
