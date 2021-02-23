@@ -26,6 +26,7 @@ urlpatterns = [
     path('signup/',include('signup.urls')),
     path('income/',include('income.urls')),
     path('exp/',include('expense.urls')),
+    path('goals/',include('goal.urls')),
     path('',include('signup.urls')),
 ]
 

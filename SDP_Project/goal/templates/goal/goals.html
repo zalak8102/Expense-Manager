@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'base1.html' %}
+<html lang="en">
+<head>
+    <title>Goal</title>
+</head>
+<body>
+    {% block content %}
+    <style>
+        .ldBar-label {
+                color: rgb(43, 94, 128);
+                font-family: 'varela round';
+                font-size: 1.5em;
+                font-weight: 400; 
+            }
+    </style>
+    <section style="height: 50px;">
+        <a href="/goals/addgoal/" class="btn btn-info" role="button"><i class="fas fa-plus" style="padding: 0.4rem;size: 8px;"></i></a>
+    </section>
+    <div>
+        <div class="card-deck" >
+            {% for gls in gls %}
+                        <div class="card shadow-lg p-3 mb-5 rounded" style="background-color: rgb(158, 185, 221);">
+                            <div class="card-header bg-dark" style="color: blanchedalmond;"><h4>{{ gls.goalName }} 
+                            <div class="card-footer" style="display: inline-flex;justify-self: right;">
+                                <button class="btn" style="margin: 0.4rem;background-color: burlywood;" onclick='updInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 8px;"></i></button>
+                                <button class="btn" style="margin: 0.4rem;background-color:burlywood;" onclick='delInc("{{ inc.incomeID }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 8px;"></i></button></div>
+                            <div class="ldBar label-center" data-preset="circle" data-value="{{gls.status}}"></div>
+                            </div></h4>
+                                <div class="card-body">
+                                    <p class="card-text"><i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i>Amount : {{ gls.amount }}</p>
+                                    <p class="card-text"><i class="fas fa-calendar-day" style="padding: 0.4rem;"></i>Date : {{ gls.date }}</p>
+                                    <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>Contribution : {{ gls.contribution }}</p>
+                                    <p class="card-text"><i class="fas fa-clipboard" style="padding: 0.4rem;"></i>status : {{ gls.status }}</p>
+                                </div>
+                        </div>
+            {% endfor %}  
+        </div>     
+    </div>
+    <br><br>
+    {% endblock %}
+</body>
+</html>

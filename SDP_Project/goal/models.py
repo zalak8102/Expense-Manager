@@ -9,4 +9,5 @@ class goal(models.Model):
     date = models.DateField()
     contribution=models.IntegerField()
     status = models.IntegerField()
+    pause=models.BooleanField(default=False)
 
