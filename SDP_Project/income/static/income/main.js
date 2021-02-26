@@ -161,3 +161,63 @@ function searchFun2() {
     }
 }
 //$(".progress-bar").loading();
+
+function delGoal(id, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/goals/del_goal/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    gol = document.createElement('input');
+    gol.setAttribute('name','id');
+    gol.setAttribute('type','hidden');
+    gol.setAttribute('value',id);
+    form.appendChild(gol);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function updStat(id,c, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/goals/contri/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    gol = document.createElement('input');
+    gol.setAttribute('name','id');
+    gol.setAttribute('type','hidden');
+    
+    var retVal = confirm("Your total number of contribution for this Goal is "+c+".\n Do you want to contribute one more time?");
+    if( retVal == true ) {
+        gol.setAttribute('value',id);    
+    } else {
+        gol.setAttribute('value', 0);    
+    }
+    form.appendChild(gol);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function updGoal(id, csrftoken) {
+    form = document.createElement('form');
+    form.setAttribute('method','POST');
+    form.setAttribute('action','/goals/updateGoal/');
+    input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'csrfmiddlewaretoken';
+    input.value = csrftoken;
+    form.appendChild(input);
+    gol = document.createElement('input');
+    gol.setAttribute('name','id');
+    gol.setAttribute('type','hidden');
+    gol.setAttribute('value',id);    
+    form.appendChild(gol);
+    document.body.appendChild(form);
+    form.submit();
+}

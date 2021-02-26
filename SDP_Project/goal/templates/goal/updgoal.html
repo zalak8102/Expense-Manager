@@ -6,7 +6,7 @@
 </head>
 <body>
     {% block content %}
-    <form method="POST" action="/goals/add_goal/">
+    <form method="POST" action="/goals/upd_goal/">
         {% csrf_token %}
         <div class="container">
             <div class="row justify-content-center">
@@ -25,12 +25,13 @@
                     <div class="card text-white bg-secondary mb-3" style="max-width: 80rem;">
                         <img src="/media/img3.jpg" />
                         <div class="card-img-overlay">
-                        <div class="card-header" style="background-color: cadetblue;color: black;">Add Goals</div>
+                        <div class="card-header" style="background-color: cadetblue;color: black;">Update Goals</div>
                         <div class="card-body" style="color: black;font-weight: bold;">
-                            <p>Name    <input type="text" name="glname" required/></p>  
-                            <p>Amount <input type="number" name="glamt" required/></p>
-                            <p>Contribution <input type="number" name="glcont"/></p>
-                            <p><button type="submit" id="addgoal" class="btn" style="background-color:cadetblue;">ADD</button></p>
+                            <p>Name    <input type="text" name="glname" value="{{g.goalName}}" required/></p>  
+                            <p>Amount <input type="number" name="glamt" value="{{g.amount}}" required/></p>
+                            <p>Contribution <input type="number" name="glcont" value="{{g.contribution}}"/></p>
+                            <input type="hidden" name="id" value="{{g.goalId}}">
+                            <p><button type="submit" id="updgoal" class="btn" style="background-color:cadetblue;">Update</button></p>
                         </div>
                         </div>
                     </div>

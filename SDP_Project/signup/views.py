@@ -46,7 +46,6 @@ def signin(request):
             count=-1
     if count==1:
         request.session['usremail']=usremail
-        #messages.warning(request,"Your are successfully logged in!!")
         return redirect('/income/income/')
     elif count==0:
         messages.warning(request,"Incorrect password!!")
