@@ -48,11 +48,6 @@
     </style>
     <div class="container">
         <div class="row" style="padding: 0.5rem;">
-            <!--div class="col-3"></div-->
-          <!--div class="col-3">
-            <div class="ldBar label-center" data-preset="circle" data-value="90"></div>
-            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Income : 50000</p>
-          </div-->
           <div class="col-6">
             <div class="d-flex mb-3" style="background-color: rgb(101, 21, 121);"></div>
             <div class="p-2" style="width: 40%;background-color: rgb(83, 11, 105);color:white;">Total Incomes</div>
@@ -61,54 +56,25 @@
           <div class="col-3">
             <div class="ldBar label-center" data-preset="circle" data-value="{{rexp}}"></div> 
             {% if safe %} 
-            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{total_exp}}</p>
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{texp}}</p>
        
             {% else %} 
-            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{total_exp}}</p>
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Expense : {{texp}}</p>
             <p style="color: red;">Your Expenses exceed Income</p>
             {% endif%} 
           </div>
           <div class="col-3">
-            <div class="ldBar label-center" data-preset="circle" data-value="60"></div> 
-            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Saving : 10000</p>
+            <div class="ldBar label-center" data-preset="circle" data-value="{{rsave}}"></div> 
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Saving : {{total}}</p>
           </div>
         </div>
         <hr>
-        <!--div class="row">
-          <div class="col-2">
-            <section style="height: 50px; margin: 1rem 1rem;">
-                <a href="/expense/addexp/" class="btn btn-info" role="button"><i class="fas fa-plus" style="padding: 0.5rem .7rem;size: 8px;"></i></a>
-            </section>
-          </div>
-          <div class="col-10">
-            <form action="">
-                <input type="search" id="gsearch" name="gsearch" placeholder="Search expense by name" onkeyup="searchFun2()">
-                <span><i class="fas fa-chevron-right"></i></span>
-            </form>
-          </div>
-        </div-->
-
-    
-        <div class="row">
-            <!--div class="col-4">
-                <h3 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Filters <i class="fas fa-filter"></i></h3>
-                <hr>
-                <div class="d-flex flex-column">
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Date <i class="fas fa-sort"></i></h5></div>
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Amount <i class="fas fa-sort-amount-down"></i></h5></div>
-                    <div class="p-2"><h5 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">Catagory <i class="fas fa-sort-alpha-down"></i></h5></div>
-                </div>
-            </div-->
+        <div class="row" style="padding: 0.5rem;">
              <div class="col-4">
                 <div>
                     <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
                     <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Total Expenses</div>
                     <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{total_exp}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
-                </div>
-                <div>
-                    <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
-                    <div class="p-2" style="width: 65%;background-color: rgb(168, 66, 138);color:white;">Average Expense</div>
-                    <div class="p-2" style="width: 65%;background-color: rgb(173, 88, 146);color: white;">{{average}}<i class="fas fa-rupee-sign" style="padding: 0.4rem;"></i></div>
                 </div>
                 <div>
                     <div class="d-flex mb-3" style="background-color: rgb(194, 144, 181);"></div>
@@ -122,9 +88,22 @@
                 </div>
             </div>
             <div class="col-8">
-              
-              
-              <img src="/media/chart.png" />
+                <form method="POST" action="/exp/report/">
+                    {% csrf_token %}
+                   <p style="color: rgb(101, 21, 121);font-weight: bold;">From : <input type="date" name="from"> To : <input type="date" name="to"> 
+                    <button type="submit" class="btn btn-info" style="margin: 1rem;"> Go </button>
+                    <button class="btn btn-success"><a class="nav-link" href="/exp/report/" style="text-decoration: none;color:black;">Show All</a>
+                    </button></p>
+                        
+                
+                    {% if f %}
+                        <img src="/media/chart.png"/>
+                    {% else %}
+                        <br><br>
+                        <h2 style="color: red;">No Expenses are their between both date, which you have provided.</h2>
+                    {% endif %}
+                </form>
+
             </div>
         </div>
     </div>

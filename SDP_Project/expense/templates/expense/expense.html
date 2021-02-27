@@ -93,8 +93,7 @@
                            <div class="p-2" style="width: 30%;background-color: rgb(16, 105, 13);color: white;">{{exp.category}}</div>
                            <div class="p-2" style="width: 30%;background-color: rgb(30, 119, 22);color:white;">{{exp.amount}}</div>
                            <div class="p-2" style="width: 30%;background-color: rgb(34, 145, 24);color:white;">{{exp.date}}</div>
-                           <div class="p-2" style="width: 30%;background-color: rgb(63, 175, 29);color:white;">{{exp.comment}}</div>
-                           <div class="p-2" style="width: 30%;background-color: rgb(53, 201, 34);color:white;"><button class="btn" style="margin: 0.2rem;background-color: burlywood;" onclick='updExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-pencil-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
+                           <div class="p-2" style="width: 30%;background-color: rgb(63, 175, 29);color:white;">{{exp.comments}}</div>
                            <div class="p-2" style="width: 30%;background-color: rgb(94, 209, 41);color:white;"><button class="btn" style="margin: 0.2rem;background-color:burlywood;" onclick='delExp("{{ exp.expId }}", "{{ csrf_token }}")'><i class="fas fa-trash-alt" style="padding: 0.2rem;size: 6px;"></i></button></div>
                        </div>
                        <!--end for loop-->

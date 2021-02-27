@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Create your views here.
 
-def income(request):
+def income(request):    
     inc=income_details.objects.all().filter(user_id=request.session['usremail'])
     currentMonth = datetime.now().month
     return render(request,'income/income.html',context={"inc": inc,"currentMonth":currentMonth})
