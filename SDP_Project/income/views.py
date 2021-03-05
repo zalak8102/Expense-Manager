@@ -5,15 +5,19 @@ from datetime import datetime
 
 # Create your views here.
 
-def income(request):    
-    inc=income_details.objects.all().filter(user_id=request.session['usremail'])
-    currentMonth = datetime.now().month
-    return render(request,'income/income.html',context={"inc": inc,"currentMonth":currentMonth})
-
+def income(request):  
+    if 'usremail' in request.session:  
+        inc=income_details.objects.all().filter(user_id=request.session['usremail'])
+        currentMonth = datetime.now().month
+        return render(request,'income/income.html',context={"inc": inc,"currentMonth":currentMonth})
+    else: 
+        return render(request,'signup/login.html')
 
 def addinc(request):
-    return render(request,'income/add_income.html')
-
+    if 'usremail' in request.session:
+        return render(request,'income/add_income.html')
+    else:
+        return render(request,'signup/login.html')
 
 def add_income(request):
     name=request.POST['iname']

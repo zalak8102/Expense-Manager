@@ -6,16 +6,19 @@ import time
 import math
 # Create your views here.
 def goals(request):
-    currentDate = datetime.now().day
-    gls=goal.objects.all().filter(user_id=request.session['usremail'])
-    stat = {}
-    for g in gls:
-        if(g.amount==0):
-            stat[g.goalId]=0
-        else:
-            stat[g.goalId] = (g.status / g.amount)*100
-            stat[g.goalId] = math.ceil(stat[g.goalId])
-    return render(request,'goal/goals.html',context={"gls":gls ,"stat":stat})
+    if 'usremail' in request.session:
+        currentDate = datetime.now().day
+        gls=goal.objects.all().filter(user_id=request.session['usremail'])
+        stat = {}
+        for g in gls:
+            if(g.amount==0):
+                stat[g.goalId]=0
+            else:
+                stat[g.goalId] = (g.status / g.amount)*100
+                stat[g.goalId] = math.ceil(stat[g.goalId])
+        return render(request,'goal/goals.html',context={"gls":gls ,"stat":stat})
+    else:
+        return render(request,'signup/login.html')
 
 def contri(request):
      if(request.POST['id'] != "0"):
@@ -37,7 +40,11 @@ def contri(request):
      return redirect('/goals/')
 
 def addgoal(request):
-    return render(request,'goal/addgoal.html')
+    if 'usremail' in request.session:
+        return render(request,'goal/addgoal.html')
+    else:
+        return render(request,'signup/login.html')
+    
 
 def add_goal(request):
     glName=request.POST['glname']

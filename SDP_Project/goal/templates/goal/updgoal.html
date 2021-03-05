@@ -27,9 +27,9 @@
                         <div class="card-img-overlay">
                         <div class="card-header" style="background-color: cadetblue;color: black;">Update Goals</div>
                         <div class="card-body" style="color: black;font-weight: bold;">
-                            <p>Name    <input type="text" name="glname" value="{{g.goalName}}" required/></p>  
-                            <p>Amount <input type="number" name="glamt" value="{{g.amount}}" required/></p>
-                            <p>Contribution <input type="number" name="glcont" value="{{g.contribution}}"/></p>
+                            <p>Name  <br>  <input type="text" name="glname" value="{{g.goalName}}" required/></p>  
+                            <p>Total Amount <br><input type="number" name="glamt" value="{{g.amount}}" required/></p>
+                            <p>Contribution(per month.) <br><input type="number" name="glcont" value="{{g.contribution}}"/></p>
                             <input type="hidden" name="id" value="{{g.goalId}}">
                             <p><button type="submit" id="updgoal" class="btn" style="background-color:cadetblue;">Update</button></p>
                         </div>

@@ -25,8 +25,8 @@
                     <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
                         <div class="card-header" style="background-color: cadetblue;">Update Expense</div>
                         <div class="card-body">
-                            <p>Name    <input type="text" name="expnm" value="{{ exps.expName }}" required/></p> 
-                            <p>Category
+                            <p>Name  <br>  <input type="text" name="expnm" value="{{ exps.expName }}" required/></p> 
+                            <p>Category <br>
                                 <select name="catg" id="catg">
                                     <option value="{{ exps.category }}" selected> {{ exps.category}} </option>
                                     {% for l in label %}
@@ -34,9 +34,9 @@
                                     {% endfor %}    
                                 </select>
                             </p> 
-                            <p>Comments    <input type="text" name="expcmt" value="{{ exps.comments }}" /></p>   
-                            <p>Amount <input type="number" name="expamnt" value="{{ exps.amount }}" required/></p>
-                            <p>Expense-Date <input type="date" name="expdt" value="{{ exps.date | date:'Y-m-d' }}" required/></p>
+                            <p>Comments  <br>  <input type="text" name="expcmt" value="{{ exps.comments }}" /></p>   
+                            <p>Amount<br> <input type="number" name="expamnt" value="{{ exps.amount }}" required/></p>
+                            <p>Expense-Date <br> <input type="date" name="expdt" value="{{ exps.date | date:'Y-m-d' }}" required/></p>
                             <input type="hidden" name="id" value="{{ exps.expId }}">
                             <p><button type="submit" id="updexpense" class="btn btn-success">UPDATE</button></p>
                         </div>

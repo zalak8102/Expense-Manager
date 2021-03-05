@@ -63,8 +63,11 @@ def logout(request):
         return render(request,'home.html')
     
 def profile(request):
-    usr=user_details.objects.get(email=request.session['usremail'])
-    return render(request,'signup/profile.html',context={"usr": usr})
+    if 'usremail' in request.session:
+        usr=user_details.objects.get(email=request.session['usremail'])
+        return render(request,'signup/profile.html',context={"usr": usr})
+    else:
+        return render(request,'signup/login.html')
 
 def updateprf(request):
     email=request.POST['email']
