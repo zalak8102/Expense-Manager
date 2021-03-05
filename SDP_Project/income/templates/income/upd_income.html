@@ -25,10 +25,10 @@
                     <div class="card text-white bg-secondary mb-3" style="max-width: 50rem;">
                         <div class="card-header" style="background-color: cadetblue;">Update Income</div>
                         <div class="card-body">
-                            <p>Name    <input type="text" name="iname" value="{{ inc.name }}" required/></p> 
-                            <p>Description    <input type="text" name="ides" value="{{ inc.description }}" /></p>   
-                            <p>Amount <input type="number" name="iamt" value="{{ inc.amount }}" required/></p>
-                            <p>Earning-Date <input type="date" name="idate" value="{{ inc.date | date:'Y-m-d' }}" required/></p>
+                            <p>Name <br>   <input type="text" name="iname" value="{{ inc.name }}" required/></p> 
+                            <p>Description <br>   <input type="text" name="ides" value="{{ inc.description }}" /></p>   
+                            <p>Amount<br> <input type="number" name="iamt" value="{{ inc.amount }}" required/></p>
+                            <p>Earning-Date <br><input type="date" name="idate" value="{{ inc.date | date:'Y-m-d' }}" required/></p>
                             {% if inc.regular %}
                                 <p> <input type="checkbox" name="ireg" checked/> Is this regular Income?</p>
                             {% else %}

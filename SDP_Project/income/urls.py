@@ -9,6 +9,5 @@ urlpatterns=[
     url(r'^add_income/$',views.add_income,name='add_income'),
     url(r'^del_income/$',views.del_income,name='del_income'),
     url(r'^updateinc/$',views.updateinc,name='updateinc'),
-    url(r'^upd_income/$',views.upd_income,name='upd_income'),  
-
+    url(r'^upd_income/$',views.upd_income,name='upd_income'), 
   ]

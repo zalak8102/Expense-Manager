@@ -61,66 +61,75 @@ def sortByCate(request):
     return render(request,'expense/expense.html',context={"currentMonth":eps["currentMonth"],"exps": exps,"safe":eps["safe"]})
 
 def exp(request):
-    exps=expense.objects.all().filter(user_id=request.session['usremail'])
-    eps=calculate(request)
-    return render(request,'expense/expense.html',context={"exps": exps,"safe":eps["safe"],"currentMonth":eps["currentMonth"]})
+    if 'usremail' in request.session:
+        exps=expense.objects.all().filter(user_id=request.session['usremail'])
+        eps=calculate(request)
+        return render(request,'expense/expense.html',context={"exps": exps,"safe":eps["safe"],"currentMonth":eps["currentMonth"]})
+    else:
+        return render(request,'signup/login.html')
 
 def report(request):
-    exps=expense.objects.all().filter(user_id=request.session['usremail'])
-    labels = 'Food', 'Entertainment','HouseHold','Medical','Shopping','Travel','Others'
-    #labels = 'F','E','H','M','S','T','O'
-    catamt = {
-        "food": 0,
-        "entertainment": 0,
-        "household": 0,
-        "medical": 0,
-        "shopping":0,
-        "travel":0,
-        "others":0
-    }
-    if request.method == "POST":
-        date1 = request.POST['from']
-        date2 = request.POST['to']
-        exps2 = exps.filter(date__range=[date1, date2])
-        for e in exps2:
-            catamt[e.category] += e.amount
+    if 'usremail' not in request.session:
+        return render(request,'signup/login.html')
     else:
-        for e in exps:
-            catamt[e.category] += e.amount
-    f = False
-    for c in catamt:
-        if catamt[c]:
-            f = True
-    if f:
-        sizes = []
-        for key in catamt:
-            sizes.append(catamt[key])
-        objects = labels
-        y_pos = np.arange(len(objects))
-        qty = sizes
-        plt.bar(y_pos, qty, align='center', alpha=0.5)
-        plt.xticks(y_pos,objects,rotation='vertical')
-        plt.ylabel('Amount')
-        plt.title('Category')
-        plt.savefig('media/chart.png',bbox_inches = "tight")
-        plt.clf()
-        
-    eps=calculate(request)
-    l1=[]
-    for c in catamt:
-        if catamt[c]:
-            l1.append(catamt[c])
-    min_exp=min(l1)
-    max_exp=max(l1)
-    eps["min_exp"] = min_exp
-    eps["max_exp"] = max_exp
-    eps["cmtamt"] = catamt
-    eps["total_exp"] = sum(l1)
-    eps["f"]=f
-    return render(request,'expense/report.html',eps)
+        exps=expense.objects.all().filter(user_id=request.session['usremail'])
+        labels = 'Food', 'Entertainment','HouseHold','Medical','Shopping','Travel','Others'
+        #labels = 'F','E','H','M','S','T','O'
+        catamt = {
+            "food": 0,
+            "entertainment": 0,
+            "household": 0,
+            "medical": 0,
+            "shopping":0,
+            "travel":0,
+            "others":0
+        }
+        if request.method == "POST":
+            date1 = request.POST['from']
+            date2 = request.POST['to']
+            exps2 = exps.filter(date__range=[date1, date2])
+            for e in exps2:
+                catamt[e.category] += e.amount
+        else:
+            for e in exps:
+                catamt[e.category] += e.amount
+        f = False
+        for c in catamt:
+            if catamt[c]:
+                f = True
+        if f:
+            sizes = []
+            for key in catamt:
+                sizes.append(catamt[key])
+            objects = labels
+            y_pos = np.arange(len(objects))
+            qty = sizes
+            plt.bar(y_pos, qty, align='center', alpha=0.5)
+            plt.xticks(y_pos,objects,rotation='vertical')
+            plt.ylabel('Amount')
+            plt.title('Category')
+            plt.savefig('media/chart.png',bbox_inches = "tight")
+            plt.clf()
+            
+        eps=calculate(request)
+        l1=[]
+        for c in catamt:
+            if catamt[c]:
+                l1.append(catamt[c])
+        min_exp=min(l1)
+        max_exp=max(l1)
+        eps["min_exp"] = min_exp
+        eps["max_exp"] = max_exp
+        eps["cmtamt"] = catamt
+        eps["total_exp"] = sum(l1)
+        eps["f"]=f
+        return render(request,'expense/report.html',eps)
 
 def addexp(request):
-    return render(request,'expense/add_expense.html')
+    if 'usremail' in request.session:
+        return render(request,'expense/add_expense.html')
+    else:
+        return render(request,'signup/login.html')
 
 def add_expense(request):
     expName=request.POST['exname']
